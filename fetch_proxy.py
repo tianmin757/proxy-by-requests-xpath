@@ -10,7 +10,7 @@ import urllib
 import re
 import multiprocessing
 
-'''
+
 #西刺代理国内高匿免费Http代理
 def get_xici():
     proxy=[]
@@ -40,7 +40,7 @@ def get_kuaidaili():
         page=etree.HTML(html)
         proxy=page.xpath('//td[@data-title="IP"]/text()')
     return proxy
-'''
+
 #获取66ip免费Http代理
 def get_66ip():
     proxy=[]
@@ -67,7 +67,7 @@ def check_proxy():
         try:
             response = opener.open(url_test, timeout=3)
             print ("这个可以用：",i)
-            with open('D:/python/12.txt','a+') as f:
+            with open('D:/12.txt','a+') as f:
                 f.write(' '+str(i)+'\n')
                 f.close()
         except Exception:
@@ -76,8 +76,8 @@ def check_proxy():
             
 if __name__=="__main__":
     all_proxies=[]
-    #all_proxies+=get_xici()
-    #all_proxies+=get_kuaidaili()
+    all_proxies+=get_xici()
+    all_proxies+=get_kuaidaili()
     all_proxies+=get_66ip()
     print (all_proxies)
     print (type(all_proxies))
@@ -86,4 +86,4 @@ if __name__=="__main__":
     pool.apply_async(check_proxy(),list_ip)
     pool.close()
     pool.join()
-    print('All subprocesses done.')
+print('All subprocesses done.')
